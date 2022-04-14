@@ -7,16 +7,16 @@ import db from '../database/initializeDB.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.send('Welcome to the UMD Dining API!');
+  res.send('Welcome to the UMD Plant Finder API!');
 });
 
 /// /////////////////////////////////
-/// ////Dining Hall Endpoints////////
+/// ////Plant Endpoints////////
 /// /////////////////////////////////
-router.get('/dining', async (req, res) => {
+router.get('/plants/flowers', async (req, res) => {
   try {
-    const halls = await db.DiningHall.findAll();
-    const reply = halls.length > 0 ? { data: halls } : { message: 'no results found' };
+    const flow = await db.plants.findAll();
+    const reply = flow.length > 0 ? { data: flow } : { message: 'no results found' };
     res.json(reply);
   } catch (err) {
     console.error(err);
@@ -24,11 +24,11 @@ router.get('/dining', async (req, res) => {
   }
 });
 
-router.get('/dining/:hall_id', async (req, res) => {
+router.get('/plants/:plant_id', async (req, res) => {
   try {
-    const hall = await db.DiningHall.findAll({
+    const flow = await db.plants.findAll({
       where: {
-        hall_id: req.params.hall_id
+        plant_id: req.params.plant_id
       }
     });
 
