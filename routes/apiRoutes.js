@@ -139,6 +139,34 @@ router.put('/meals', async (req, res) => {
 });
 
 /// /////////////////////////////////
+/// ////////Fruits Endpoints//////////
+/// /////////////////////////////////
+router.route('https://group19-project.herokuapp.com/').get('/fruits', async (req, res) => {
+  try {
+    const fruits = await db.Fruits.findAll();
+    res.json(fruits);
+  } catch (err) {
+    console.error(err);
+    res.json('Server error');
+  }
+});
+
+router.route('https://group19-project.herokuapp.com/').get('/fruits/:fruit_id', async (req, res) => {
+  try {
+    const fruits = await db.Fruit.findAll({
+      where: {
+        fruit_id: req.params.fruit_id
+      }
+    });
+    res.json(fruits);
+  } catch (err) {
+    console.error(err);
+    res.json('Server error');
+  }
+});
+
+
+/// /////////////////////////////////
 /// ////////Macros Endpoints/////////
 /// /////////////////////////////////
 router.get('/macros', async (req, res) => {
