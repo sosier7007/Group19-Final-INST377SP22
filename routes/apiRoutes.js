@@ -39,29 +39,31 @@ router.get('/plants/:plant_id', async (req, res) => {
   }
 });
 
-router.post('/dining', async (req, res) => {
-  const halls = await db.DiningHall.findAll();
+router.post('/plants/flower', async (req, res) => {
+  const halls = await db.plants.findAll();
   const currentId = (await halls.length) + 1;
   try {
-    const newDining = await db.DiningHall.create({
-      hall_id: currentId,
-      hall_name: req.body.hall_name,
-      hall_address: req.body.hall_address,
-      hall_lat: req.body.hall_lat,
-      hall_long: req.body.hall_long
+    const newFlow = await db.plants.create({
+      flower_id: currentId,
+      plant_id: currentId,
+      size: req.body.size,
+      color: req.body.color,
+      inflorescence: req.body.inflorescence,
+      season: req.body.season,
+      reproduction: req.body.reproduction, 
     });
-    res.json(newDining);
+    res.json(newFlow);
   } catch (err) {
     console.error(err);
     res.error('Server error');
   }
 });
 
-router.delete('/dining/:hall_id', async (req, res) => {
+router.delete('/plants/:plant_id', async (req, res) => {
   try {
-    await db.DiningHall.destroy({
+    await db.plants.destroy({
       where: {
-        hall_id: req.params.hall_id
+        plant_id: req.params.plant_id
       }
     });
     res.send('Successfully Deleted');
