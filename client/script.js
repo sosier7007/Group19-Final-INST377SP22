@@ -97,6 +97,53 @@ async function mainEvent() {
       });
       */
     });
+  
+  const radios = document.querySelectorAll('input')
+    for (const radio of radios) {
+      radio.onchange = (e) => {
+        if(e.target.value === 'tree') {
+          const selectPlant = arrayFromJson.data.filter((item) => {
+          const growth_habit = item.growth_habit.toLowerCase();
+          return growth_habit.includes('tree');
+        })
+        generateTableHead(table, data);
+        generateTable(table, selectPlant);
+
+        } else if (e.target.value === 'herb'){
+          const selectPlant = arrayFromJson.data.filter((item) => {
+          const growth_habit = item.growth_habit.toLowerCase();
+          return growth_habit.includes('herb');
+        })
+        generateTableHead(table, data);
+        generateTable(table, selectPlant);
+
+        } else if (e.target.value === 'creeper') {
+          const selectPlant = arrayFromJson.data.filter((item) => {
+          const growth_habit = item.growth_habit.toLowerCase();
+          return growth_habit.includes('creeper');
+        })
+        generateTableHead(table, data);
+        generateTable(table, selectPlant);
+
+        } else if (e.target.value === 'shrub') {
+          const selectPlant = arrayFromJson.data.filter((item) => {
+          const growth_habit = item.growth_habit.toLowerCase();
+          return growth_habit.includes('shrub');
+        })
+        generateTableHead(table, data);
+        generateTable(table, selectPlant);
+
+        } else if (e.target.value === 'climber') {
+          const selectPlant = arrayFromJson.data.filter((item) => {
+          const growth_habit = item.growth_habit.toLowerCase();
+          return growth_habit.includes('climber');
+        })
+        generateTableHead(table, data);
+        generateTable(table, selectPlant);
+
+        } 
+      }
+    }
   }
 }
 
